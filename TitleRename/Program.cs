@@ -22,15 +22,17 @@ namespace TitleRename {
      * - Don't know much about style guide you're using so I was using a usual style guide for my company (mostly based on Microsoft style guide).
      * - Because of a complex replacement condition Regular Expression pattern is used to match which text should be replaced (instead of ordinary string).
      * - Files may change the formatting but XML content remaining exactly the same (because XML is not formatting-dependent). If formatting should remain exactly the same as well different approach for solution should be used.
-     * - Only exception messages are printed. Still, information about successfully changed/not changed files also returned (just to east the trace).
-     * - All unnecessary stuff (mainly settings/options) is left where it is just to make a solution which is complete from my point of view (even though I understand it's not required by exercise conditions). It may easily be deleted/refactored if needed.
-     * - I've spend around 6 hours on this exercise. I think I can do better, to create everything from scratch just not a usual case for me.
+     * - Only exception messages are printed. Still, information about successfully changed/not changed files also returned (just to ease the trace).
+     * - All unnecessary stuff (mainly settings/options) left where it is just to make a solution complete from my point of view (even though I understand it's not required by exercise conditions). It may easily be deleted/refactored if needed.
+     * - I've spend around 6 hours on this exercise. I think I can do better. Create everything from scratch just not a usual case for me.
      * 
      * Exercise feedback:
      * - I was told it's a 3-hour task. Without a testing it really is.
-     * But to get the solution properly tested (as required) it's full day task and, as for me, it's not fair to give sich big tasks for a potential newcomers.
-     * I'd prefer more technical questions at a technical interview instead of such a big task.
-     * - Task mey be shortened (more easily testable) if file system dependency is removed.
+     * But to get the solution properly tested (as required) it's a full day task and, as for me, it's not fair to give sich big tasks for a potential newcomers.
+     * I'd prefer more technical questions at a technical interview instead of such big exercise.
+     * - Task may be shortened (more easily testable) if requirement to interact with the file system is removed from the description.
+     * 
+     * GitHub link: https://github.com/s-bihun/TitleRenamer.git
      */
 
     static class Program {

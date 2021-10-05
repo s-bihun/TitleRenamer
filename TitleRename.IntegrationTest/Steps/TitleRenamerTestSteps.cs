@@ -63,8 +63,7 @@ namespace TitleRename.IntegrationTest.Steps {
         private Dictionary<string, StringBuilder> InMemoryFileContents = new Dictionary<string, StringBuilder>();
         private HashSet<string> ChangedFileList = new HashSet<string>();
 
-        private static string GetFullname(string directory, string name)
-        {
+        private static string GetFullname(string directory, string name) {
             return $"{directory}/{name}";
         }
 
@@ -83,7 +82,8 @@ namespace TitleRename.IntegrationTest.Steps {
             int dotIndex = fileName.LastIndexOf('.');
             if (dotIndex <= pathLength) {
                 return "";
-            } else {
+            }
+            else {
                 return fileName.Substring(dotIndex, fileName.Length - dotIndex);
             }
         }
