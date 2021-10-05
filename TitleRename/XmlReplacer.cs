@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using TitleRename.IO;
+using File = TitleRename.IO.File;
 
 namespace TitleRename {
     public sealed class XmlReplacer {
         private const char ExtensionPrefix = '.';
         private IFileSystem FileSystem;
-        private string BackupExtension;
+        private string BackupExtension = ".bak";
 
         public bool EnableReplacementsInContent = true;
         public HashSet<string> ExtensionsToProcess { get; private set; } = new HashSet<string>() { ".xml", ".xsl", ".xslt" };
         public HashSet<string> AttributesToProcess { get; private set; } = new HashSet<string> { "title" };
-        public bool EnableBackups { get; set; } = true;        
+        public bool EnableBackups { get; set; } = true;
         public string BackupFileExtension {
             get {
                 return BackupExtension;
@@ -41,11 +43,15 @@ namespace TitleRename {
             AttributesToProcess = attributes;
         }
 
-        public ReplacementInfo ReplaceAllInFolder(string folder, string replacePattern, string replacement) {
+        public ReplacementInfo ReplaceAllInDirectory(string replacePattern, string replacement, string directory) {
             var replacementInfo = new ReplacementInfo();
-            foreach (IFile file in FileSystem.AllFiles(folder).Where(IsFileToProcess)) {
-                try {
-                    var doc = XDocument.Load(file.FullName);
+            foreach (IFile file in FileSystem.AllFiles(directory).Where(IsFileToProcess)) {
+                try
+                {
+                    XDocument doc;
+                    using (TextReader reader = file.CreateReader()) {
+                        doc = XDocument.Load(reader);
+                    }
                     int replacedCount = ReplaceRecursive(doc.Root, replacePattern, replacement);
                     if (replacedCount > 0) {
                         IFile backupFile = null;
@@ -53,7 +59,9 @@ namespace TitleRename {
                             backupFile = new File(file.FullName, BackupExtension);
                             FileSystem.Copy(file.FullName, backupFile.FullName, true);
                         }
-                        doc.Save(file.FullName);
+                        using (TextWriter writer = file.CreateWriter()) {
+                            doc.Save(writer);
+                        }
                         replacementInfo.AddSuccessfullyProcessedLog(file, backupFile, replacedCount);
                     }
                     replacementInfo.AddNothingToReplaceLog(file);
@@ -74,17 +82,17 @@ namespace TitleRename {
             int replacementsCount = 0;
 
             if (EnableReplacementsInContent) {
-                string value = element.Value;
-                int valuesToReplaceCount = Regex.Match(value, replacePattern).Captures.Count;
-                if (valuesToReplaceCount > 0) {
-                    element.Value = Regex.Replace(value, replacePattern, replacement);
-                    replacementsCount += valuesToReplaceCount;
+                foreach (XText textNode in element.Nodes().OfType<XText>()) {
+                    int valuesToReplaceCount = Regex.Match(textNode.Value, replacePattern).Captures.Count;
+                    if (valuesToReplaceCount > 0) {
+                        textNode.Value = Regex.Replace(textNode.Value, replacePattern, replacement);
+                        replacementsCount += valuesToReplaceCount;
+                    }
                 }
             }
-            
-            foreach (string attributeName in AttributesToProcess) {
-                var attribute = element.Attribute(attributeName);
-                int attributeValuesToReplaceCount = attribute != null ? Regex.Match(attribute.Value, replacePattern).Captures.Count : 0;
+
+            foreach (XAttribute attribute in element.Attributes().Where(x => AttributesToProcess.Contains(x.Name.LocalName))) {
+                int attributeValuesToReplaceCount = Regex.Match(attribute.Value, replacePattern).Captures.Count;
                 if (attributeValuesToReplaceCount > 0) {
                     attribute.Value = Regex.Replace(attribute.Value, replacePattern, replacement);
                     replacementsCount += attributeValuesToReplaceCount;
