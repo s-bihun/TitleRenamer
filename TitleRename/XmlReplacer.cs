@@ -45,9 +45,8 @@ namespace TitleRename {
 
         public ReplacementInfo ReplaceAllInDirectory(string replacePattern, string replacement, string directory) {
             var replacementInfo = new ReplacementInfo();
-            foreach (IFile file in FileSystem.AllFiles(directory).Where(IsFileToProcess)) {
-                try
-                {
+            foreach (IFile file in FileSystem.AllFiles(directory).Where(IsFileToProcess).ToList()) {
+                try {
                     XDocument doc;
                     using (TextReader reader = file.CreateReader()) {
                         doc = XDocument.Load(reader);

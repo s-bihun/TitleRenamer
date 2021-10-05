@@ -19,22 +19,22 @@ namespace TitleRename.IntegrationTest.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("Title Renamer Acceptance Test", SourceFile="Features\\TitleRenamerAcceptanceTest.feature", SourceLine=0)]
-    public partial class TitleRenamerAcceptanceTestFeature
+    [TechTalk.SpecRun.FeatureAttribute("Title Renamer Test", SourceFile="Features\\TitleRenamerTest.feature", SourceLine=0)]
+    public partial class TitleRenamerTestFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "TitleRenamerAcceptanceTest.feature"
+#line 1 "TitleRenamerTest.feature"
 #line hidden
         
         [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Title Renamer Acceptance Test", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Title Renamer Test", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -123,21 +123,21 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("directory \"/root/internal\" contains files", ((string)(null)), table2, "And ");
 #line hidden
 #line 16
- testRunner.And("file \"/root/internal/test.xml\" contains", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<test title=\"This Trisoft will be updated" +
-                        "\">\r\n<line1>Trisoft has been renamed to SDL Trisoft</line1>\r\n</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("file \"/root/internal/test.xml\" contains", "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<test title=\"This Trisoft will be update" +
+                        "d\">\r\n  <line1>Trisoft has been renamed to SDL Trisoft</line1>\r\n</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 23
- testRunner.And("file \"/root/internal/test_namespace.xsl\" contains", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<test h:title=\"This Trisoft will be updat" +
-                        "ed\" xmlns:h=\"http://www.w3.org/TR/html4/\">\r\n<line1>Trisoft has been renamed to S" +
-                        "DL Trisoft</line1>\r\n</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("file \"/root/internal/test_namespace.xsl\" contains", "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<test h:title=\"This Trisoft will be upda" +
+                        "ted\" xmlns:h=\"http://www.w3.org/TR/html4/\">\r\n  <line1>Trisoft has been renamed t" +
+                        "o SDL Trisoft</line1>\r\n</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 30
- testRunner.And("file \"/root/internal/updated.xslt\" contains", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<test title=\"This SDL Trisoft will not be" +
-                        " updated\">\r\n<line1>SDL Trisoft don\'t have to be changed SDL Trisoft</line1>\r\n</t" +
-                        "est>", ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("file \"/root/internal/updated.xslt\" contains", "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<test title=\"This SDL Trisoft will not b" +
+                        "e updated\">\r\n  <line1>SDL Trisoft don\'t have to be changed SDL Trisoft</line1>\r\n" +
+                        "</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 37
- testRunner.When("\"(?<!SDL )Trisoft\" is replaced by \"Trisoft\" in directory \"/root/internal\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("\"(?<!SDL )Trisoft\" is replaced by \"SDL Trisoft\" in directory \"/root/internal\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "FileName"});
@@ -170,27 +170,27 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("directory \"/root/internal\" should contain", ((string)(null)), table4, "And ");
 #line hidden
 #line 52
- testRunner.And("file \"/root/internal/test.xml.bak\" should contain", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<test title=\"This Trisoft will be updated" +
-                        "\">\r\n<line1>Trisoft has been renamed to SDL Trisoft</line1>\r\n</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("file \"/root/internal/test.xml.bak\" should contain", "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<test title=\"This Trisoft will be update" +
+                        "d\">\r\n  <line1>Trisoft has been renamed to SDL Trisoft</line1>\r\n</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 59
- testRunner.And("file \"/root/internal/test.xml\" should contain", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<test title=\"This SDL Trisoft will be upd" +
-                        "ated\">\r\n<line1>SDL Trisoft has been renamed to SDL Trisoft</line1>\r\n</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("file \"/root/internal/test.xml\" should contain", "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<test title=\"This SDL Trisoft will be up" +
+                        "dated\">\r\n  <line1>SDL Trisoft has been renamed to SDL Trisoft</line1>\r\n</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 66
- testRunner.And("file \"/root/internal/test_namespace.xsl.bak\" should contain", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<test h:title=\"This Trisoft will be updat" +
-                        "ed\" xmlns:h=\"http://www.w3.org/TR/html4/\">\r\n<line1>Trisoft has been renamed to S" +
-                        "DL Trisoft</line1>\r\n</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("file \"/root/internal/test_namespace.xsl.bak\" should contain", "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<test h:title=\"This Trisoft will be upda" +
+                        "ted\" xmlns:h=\"http://www.w3.org/TR/html4/\">\r\n  <line1>Trisoft has been renamed t" +
+                        "o SDL Trisoft</line1>\r\n</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 73
- testRunner.And("file \"/root/internal/test_namespace.xsl\" should contain", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<test h:title=\"This SDL Trisoft will be u" +
-                        "pdated\" xmlns:h=\"http://www.w3.org/TR/html4/\">\r\n<line1>SDL Trisoft has been rena" +
-                        "med to SDL Trisoft</line1>\r\n</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("file \"/root/internal/test_namespace.xsl\" should contain", "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<test h:title=\"This SDL Trisoft will be " +
+                        "updated\" xmlns:h=\"http://www.w3.org/TR/html4/\">\r\n  <line1>SDL Trisoft has been r" +
+                        "enamed to SDL Trisoft</line1>\r\n</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 80
- testRunner.And("file \"/root/internal/updated.xslt\" should contain", "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<test title=\"This SDL Trisoft will not be" +
-                        " updated\">\r\n<line1>SDL Trisoft don\'t have to be changed SDL Trisoft</line1>\r\n</t" +
-                        "est>", ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("file \"/root/internal/updated.xslt\" should contain", "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<test title=\"This SDL Trisoft will not b" +
+                        "e updated\">\r\n  <line1>SDL Trisoft don\'t have to be changed SDL Trisoft</line1>\r\n" +
+                        "</test>", ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 87
     testRunner.And("rest of the files should be unchanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
